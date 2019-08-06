@@ -1,0 +1,19 @@
+version: '2'
+services:
+  minio: 
+    build:  
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - "9000:9000"
+
+    volumes: 
+      - /data/minio:/data
+      - /data/minio/config:/root/.minio
+    env_file: 
+      - .env
+    environment: 
+    #注意，必须指定环境变量的文件和环境变量的值
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+      

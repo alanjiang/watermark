@@ -1,0 +1,1 @@
+./trans.sh /opt/libreoffice6.2/program  /tmp/答辩知识点汇总V0.3.docx  /tmp/

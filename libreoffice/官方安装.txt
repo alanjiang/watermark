@@ -1,0 +1,72 @@
+1, 官方安装
+tar zxvf LibreOffice_6.2.4_Linux_x86-64_rpm.tar.gz
+
+cd LibreOffice_6.2.4.2_Linux_x86-64_rpm/RPMS
+
+su -c 'yum install *.rpm'
+
+安装后，发现缺少 .so依赖包，需要安装 以下两个依赖
+
+(1)sudo yum install cairo-devel 
+
+(2) sudo yum install libSM-1.2.2-2.el7.x86_64 --setopt=protected_multilib=false
+
+/opt/libreoffice6.2/program/soffice --help
+
+中文字体：
+
+
+$yum -y install fontconfig
+
+$mkdir -p  /usr/share/fonts/chinese
+
+chmod -R 755 /usr/share/fonts/chinese
+
+将中文字体投放到 /usr/share/fonts/chinese
+
+
+scp -r /Users/zhangxiao/Desktop/中文字体/songti.otf  root@39.108.210.27:/usr/share/fonts/chinese/
+
+
+$cd /usr/share/fonts/chinese
+$mkfontscale
+$mkfontdir
+$fc-cache -fv
+执行以上命令让字体生效
+执行 
+$fc-list 查看是否生效, 
+
+$fc-list :lang=zh
+
+执行world=>pdf转换
+
+
+scp /Users/zhangxiao/Desktop/太平深圳答辩/答辩知识点汇总V0.3.docx root@39.108.210.27:/tmp/
+
+
+
+scp  root@39.108.210.27:/tmp/答辩知识点汇总V0.3.pdf   //Users/zhangxiao/Desktop/Results/
+
+执行转换：
+
+
+
+
+/opt/libreoffice6.2/program/soffice --headless --convert-to  pdf /tmp/答辩知识点汇总V0.3.docx --outdir /tmp/
+
+
+
+
+/usr/bin/libreoffice  --invisible --convert-to pdf  zzz.doc
+
+
+
+###### JS pdf view  ##########
+
+https://github.com/brendandahl/pdf.js.utils/tree/master/browser
+
+
+2，docker 安装  
+
+
+docker build -t libreoffice:blueocean .
